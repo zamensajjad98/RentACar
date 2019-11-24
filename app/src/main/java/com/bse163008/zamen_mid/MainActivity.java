@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
                 ImageView img= (ImageView) findViewById(R.id.imageView2);
                 TextView text=(TextView) findViewById(R.id.carname);
+                EditText editText=(EditText) findViewById(R.id.inputday);
                 if(carName[i]=="mercedes")
                 {
                     img.setImageResource(R.drawable.mercedes);
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 {
                     img.setImageResource(R.drawable.porsche);
                     text.setText("porsche");
+
                 }else if(carName[i]=="vits")
                 {
                     img.setImageResource(R.drawable.vits);
@@ -101,12 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
 
                     }
-
-
-
-
-
-
+                String days=editText.getText().toString();
                 simpleListView.setVisibility(View.INVISIBLE);
                 frame_car.setVisibility(View.VISIBLE);
             }
