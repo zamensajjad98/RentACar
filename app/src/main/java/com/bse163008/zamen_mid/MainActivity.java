@@ -50,12 +50,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+
+
                 ImageView img= (ImageView) findViewById(R.id.imageView2);
-                TextView text=(TextView) findViewById(R.id.textView);
+                TextView text=(TextView) findViewById(R.id.carname);
                 if(carName[i]=="mercedes")
                 {
                     img.setImageResource(R.drawable.mercedes);
-                    text.setText("Mercedes");
+                    text.setText("mercedes");
 
 
                 }else if(carName[i]=="porsche")
