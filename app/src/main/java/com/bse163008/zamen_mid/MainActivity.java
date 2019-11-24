@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String Name = "nameKey";
     public static final String rent = "rentKey";
     public static final String img = "imgKey";
+    public static final String day="dayKey";
     public static final String totalamount="amountKey";
 
 
@@ -143,6 +144,8 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 finish();
                                 Toast.makeText(getApplicationContext(),"confirmed ",Toast.LENGTH_SHORT).show();
+
+
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -159,22 +162,23 @@ public class MainActivity extends AppCompatActivity {
                 alert.show();
             }
         });
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
         Intent intent=new Intent(this,Main2Activity.class);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
+
         SharedPreferences.Editor editor = sharedpreferences.edit();
 
 
         EditText editText=(EditText) findViewById(R.id.inputday);
         String days=editText.getText().toString();
 
-        editor.putString(Name, full_name);
-        editor.putString(rent, email);
-        editor.putString(img, age);
-        editor.putString(totalamount, address);
-        editor.apply();
-        Toast.makeText(MainActivity.this,"Thanks",Toast.LENGTH_LONG).show();
-        startActivity(intent);
+        //editor.putString(Name, );
+        //editor.putString(rent, email);
+        //editor.putString(img, age);
+        //editor.putString(day,days);
+        //editor.putString(totalamount, address);
+        //editor.apply();
+        //Toast.makeText(MainActivity.this,"Thanks",Toast.LENGTH_LONG).show();
+        //startActivity(intent);
     }
 }
 
