@@ -1,10 +1,15 @@
 package com.bse163008.zamen_mid;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -19,6 +24,18 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
     FrameLayout frame_car;
     ListView simpleListView;
+    Button closeButton;
+    AlertDialog.Builder builder;
+    SharedPreferences sharedpreferences;
+
+
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Name = "nameKey";
+    public static final String rent = "rentKey";
+    public static final String img = "imgKey";
+    public static final String totalamount="amountKey";
+
+
     String[] carName = {"mercedes","porsche","vits", "bmw", "foxi", "honda", "foxicarry","ferrari","pruis","chevrolet"};//car names array
     int[] Rent={50,64,70,40,90,33,66,88,99,100};
     int[] carImages = {R.drawable.mercedes,R.drawable.porsche,R.drawable.vits, R.drawable.bmw, R.drawable.foxi, R.drawable.honda,
@@ -55,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
                 ImageView img= (ImageView) findViewById(R.id.imageView2);
                 TextView text=(TextView) findViewById(R.id.carname);
-                EditText editText=(EditText) findViewById(R.id.inputday);
+
                 if(carName[i]=="mercedes")
                 {
                     img.setImageResource(R.drawable.mercedes);
@@ -104,10 +121,60 @@ public class MainActivity extends AppCompatActivity {
                 else {
 
                     }
-                String days=editText.getText().toString();
+
                 simpleListView.setVisibility(View.INVISIBLE);
                 frame_car.setVisibility(View.VISIBLE);
             }
         });
+
+        closeButton = (Button) findViewById(R.id.button);
+        builder = new AlertDialog.Builder(this);
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Uncomment the below code to Set the message and title from the strings.xml file
+                builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
+
+                //Setting message manually and performing action on button click
+                builder.setMessage("are you sure to confirm your order?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                finish();
+                                Toast.makeText(getApplicationContext(),"confirmed ",Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //  Action for 'NO' Button
+                                dialog.cancel();
+                                Toast.makeText(getApplicationContext(),"not confirmed",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                //Creating dialog box
+                AlertDialog alert = builder.create();
+                //Setting the title manually
+                alert.setTitle("AlertDialogExample");
+                alert.show();
+            }
+        });
+
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
+        Intent intent=new Intent(this,Main2Activity.class);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+
+
+        EditText editText=(EditText) findViewById(R.id.inputday);
+        String days=editText.getText().toString();
+
+        editor.putString(Name, full_name);
+        editor.putString(rent, email);
+        editor.putString(img, age);
+        editor.putString(totalamount, address);
+        editor.apply();
+        Toast.makeText(MainActivity.this,"Thanks",Toast.LENGTH_LONG).show();
+        startActivity(intent);
     }
 }
+
