@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String totalamount="amountKey";
 
 
+
     String[] carName = {"mercedes","porsche","vits", "bmw", "foxi", "honda", "foxicarry","ferrari","pruis","chevrolet"};//car names array
     int[] Rent={50,64,70,40,90,33,66,88,99,100};
     int[] carImages = {R.drawable.mercedes,R.drawable.porsche,R.drawable.vits, R.drawable.bmw, R.drawable.foxi, R.drawable.honda,
@@ -69,55 +70,73 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
+                sharedpreferences = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
 
                 ImageView img= (ImageView) findViewById(R.id.imageView2);
                 TextView text=(TextView) findViewById(R.id.carname);
-
+                EditText editText=(EditText) findViewById(R.id.inputday);
+                String days=editText.getText().toString();
                 if(carName[i]=="mercedes")
                 {
                     img.setImageResource(R.drawable.mercedes);
-                    text.setText("mercedes");
+                     text.setText("mercedes");
 
+                    editor.putString(Name,carName[i] );
+                    //editor.putString(rent,);
+                    //editor.putString(img,);
+                    //editor.putString(day,days);
+                    //editor.putString(totalamount,);
+                    editor.apply();
 
                 }else if(carName[i]=="porsche")
                 {
                     img.setImageResource(R.drawable.porsche);
                     text.setText("porsche");
+                    editor.putString(Name,carName[i] );
 
                 }else if(carName[i]=="vits")
                 {
                     img.setImageResource(R.drawable.vits);
                     text.setText("vits");
+                    editor.putString(Name,carName[i] );
                 } else if(carName[i]=="bmw")
                 {
                     img.setImageResource(R.drawable.bmw);
                     text.setText("bmw");
+                    editor.putString(Name,carName[i] );
                 }else if(carName[i]=="foxi")
                 {
                     img.setImageResource(R.drawable.foxi);
                     text.setText("foxi");
+                    editor.putString(Name,carName[i] );
                 }else if(carName[i]=="honda")
                 {
                     img.setImageResource(R.drawable.honda);
                     text.setText("honda");
+                    editor.putString(Name,carName[i] );
                 }else if(carName[i]=="foxicarry")
                 {
                     img.setImageResource(R.drawable.foxicarry);
                     text.setText("foxicarry");
+                    editor.putString(Name,carName[i] );
                 }else if(carName[i]=="ferrari")
                 {
                     img.setImageResource(R.drawable.ferrari);
                     text.setText("ferrari");
+                    editor.putString(Name,carName[i] );
                 }else if(carName[i]=="pruis")
                 {
                     img.setImageResource(R.drawable.pruis);
                     text.setText("pruis");
 
+                    editor.putString(Name,carName[i] );
+
                 }else if(carName[i]=="chevrolet")
                 {
                     img.setImageResource(R.drawable.chevrolet);
                     text.setText("chevrolet");
+                    editor.putString(Name,carName[i] );
                 }
                 else {
 
@@ -145,7 +164,10 @@ public class MainActivity extends AppCompatActivity {
                                 finish();
                                 Toast.makeText(getApplicationContext(),"confirmed ",Toast.LENGTH_SHORT).show();
 
+                                Intent intent=new Intent(MainActivity.this,Main2Activity.class);
 
+
+                                startActivity(intent);
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -160,25 +182,10 @@ public class MainActivity extends AppCompatActivity {
                 //Setting the title manually
                 alert.setTitle("AlertDialogExample");
                 alert.show();
+
             }
         });
-        Intent intent=new Intent(this,Main2Activity.class);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
 
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-
-
-        EditText editText=(EditText) findViewById(R.id.inputday);
-        String days=editText.getText().toString();
-
-        //editor.putString(Name, );
-        //editor.putString(rent, email);
-        //editor.putString(img, age);
-        //editor.putString(day,days);
-        //editor.putString(totalamount, address);
-        //editor.apply();
-        //Toast.makeText(MainActivity.this,"Thanks",Toast.LENGTH_LONG).show();
-        //startActivity(intent);
     }
 }
 
